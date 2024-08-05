@@ -9,7 +9,8 @@ app.config['UPLOAD_FOLDER'] = 'filesPic'
 api = Api(app)
 # 配置静态文件目录
 
-# git 版本控制
+# git 版本控制1
+# git 版本控制2
 
 api.add_resource(PaddleOfflineOcrView, '/paddleoffline', endpoint='paddleoffline')
 api.add_resource(ProductView, '/product', endpoint='product')
