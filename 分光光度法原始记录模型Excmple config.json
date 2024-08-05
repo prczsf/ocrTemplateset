@@ -1,0 +1,146 @@
+[
+  {
+    "seq": 1,
+    "rectVarName": "title",
+    "rectArea": "(305, 117, 345.87458714400185, 50)",
+    "type": "header",
+    "language": "zh",
+    "correctRule": "rule1"
+  },
+  {
+    "seq": 2,
+    "rectVarName": "customerName",
+    "rectArea": "(120.00000000000003, 187.3333282470703, 440.92409209449687, 31.372549019607842)",
+    "type": "header",
+    "language": "zh",
+    "correctRule": "rule1"
+  },
+  {
+    "seq": 3,
+    "rectVarName": "checkSN",
+    "rectArea": "(761.3333330154419, 199, 215.84158415841586, 24.836596320657172)",
+    "type": "header",
+    "language": "en",
+    "correctRule": "rule2"
+  },
+  {
+    "seq": 4,
+    "rectVarName": "methodName",
+    "rectArea": "(215, 221, 319.1419138766752, 35.620910046147365)",
+    "type": "header",
+    "language": "zh",
+    "correctRule": "rule3"
+  },
+  {
+    "seq": 5,
+    "rectVarName": "checkDate",
+    "rectArea": "(630, 228.3333282470703, 153.7953792232098, 31.372549019607842)",
+    "type": "header",
+    "language": "en",
+    "correctRule": "rule3"
+  },
+  {
+    "seq": 6,
+    "rectVarName": "labTemp",
+    "rectArea": "(605, 318, 175.57755744103162, 27.777772791245408)",
+    "type": "header",
+    "language": "en",
+    "correctRule": "rule2"
+  },
+  {
+    "seq": 7,
+    "rectVarName": "mostValue",
+    "rectArea": "(165, 337, 100, 33.660125732421875)",
+    "type": "header",
+    "language": "en",
+    "correctRule": "rule3"
+  },
+  {
+    "seq": 8,
+    "rectVarName": "biaoYeName",
+    "rectArea": "(624, 375, 339.93399308459595, 34.640517889284624)",
+    "type": "header",
+    "language": "zh",
+    "correctRule": "rule3"
+  },
+  {
+    "seq": 9,
+    "rectVarName": "equipSN",
+    "rectArea": "(207, 371.3333282470703, 179.53795348063554, 33.33333333333333)",
+    "type": "header",
+    "language": "en",
+    "correctRule": "rule3"
+  },
+  {
+    "seq": 10,
+    "rectVarName": "operater",
+    "rectArea": "(610, 408, 100, 36.601302203010114)",
+    "type": "header",
+    "language": "zh",
+    "correctRule": "rule3"
+  },
+  {
+    "seq": 11,
+    "rectVarName": "effectDate",
+    "rectArea": "(546, 1418, 121.12211189647712, 21.56862745098039)",
+    "type": "footer",
+    "language": "zh",
+    "correctRule": "rule2"
+  },
+  {
+    "seq": 12,
+    "rectVarName": "xianSeTime",
+    "rectArea": "(631, 261, 151.81518120340783, 26.797380634382662)",
+    "type": "header",
+    "language": "en",
+    "correctRule": "rule3"
+  },
+  {
+    "seq": 13,
+    "rectVarName": "waveLength",
+    "rectArea": "(632, 288, 147.85478516380385, 27.777772791245404)",
+    "type": "header",
+    "language": "en",
+    "correctRule": "rule3"
+  },
+  {
+    "seq": 14,
+    "rectVarName": "equipmentName",
+    "rectArea": "(628.3333330154419, 349, 212.87128712871288, 23.856204163794427)",
+    "type": "header",
+    "language": "zh",
+    "correctRule": "rule4"
+  },
+  {
+    "seq": 15,
+    "rectVarName": "xinseTemp",
+    "rectArea": "(214, 257, 198.34983466875434, 25.816988477519914)",
+    "type": "header",
+    "language": "zh",
+    "correctRule": "rule4"
+  },
+  {
+    "seq": 16,
+    "rectVarName": "canBiRongYe",
+    "rectArea": "(214, 286.3333282470703, 197.35973565885337, 23.529411764705884)",
+    "type": "header",
+    "language": "zh",
+    "correctRule": "rule3"
+  },
+  {
+    "seq": 17,
+    "rectVarName": "biSeMin",
+    "rectArea": "(222, 312, 131.02310199548702, 28.75816494810815)",
+    "type": "header",
+    "language": "zh",
+    "correctRule": "rule3"
+  },
+  {
+    "seq": 18,
+    "rectVarName": "tableBody",
+    "rectArea": "(108.99999999999983, 446, 853.9473715581394, 905.8823529411765)",
+    "type": "body",
+    "language": "zh",
+    "correctRule": "rule4"
+  }
+]
