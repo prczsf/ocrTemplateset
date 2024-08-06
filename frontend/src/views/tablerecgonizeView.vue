@@ -4,6 +4,22 @@
         <div class="file-setting">
             <input type="file" @change="handleFileUpload" accept=".json">
             <input type="text" v-model="imageName" placeholder="输入已经保存在后台的图片名称（不含扩展名）">
+            <select v-model="imageName">
+                <option value="moban">moban.png</option>
+                <option value="andan">andan.png</option>
+                <option value="fenguanghuifafen1">fenguanghuifafen1.png</option>
+                <option value="fenguanghuifafen2">fenguanghuifafen2.png</option>
+                <option value="fenguanghuifafen3">fenguanghuifafen3.png</option>
+                <option value="fenguanghuifafen4">fenguanghuifafen4.png</option>
+                <option value="fenguangliuhuawu">fenguangliuhuawu.png</option>
+                <option value="fenuangqinghua">fenuangqinghua.png</option>
+                <option value="huaxuexuyang828">huaxuexuyang828.png</option>
+                <option value="huaxuexuyang3991">huaxuexuyang3991.png</option>
+                <option value="huaxuexuyang3992">huaxuexuyang3992.png</option>
+                <option value="wurishenghua">wurishenghua.png</option>
+                <option value="xuanfuwu">xuanfuwu.png</option>
+            </select>
+
             <button @click="startRecognition">开始识别</button>
         </div>
 
@@ -13,10 +29,10 @@
                 <img :src="imageSrc" alt="图片预览" style="max-width: 100%;">
             </div>
             <div class="result-container">
-                <div v-if="bodyResults.length" >
+                <div v-if="bodyResults.length">
                     <h2>表格数据</h2>
                     <div v-for="item in bodyResults" :key="item.seq">
-                        <div v-html="item.rectVarValue"></div>
+                        <div v-html="item.rectVarValue" border="1px"></div>
                     </div>
                 </div>
                 <div v-if="otherResults.length">
@@ -110,19 +126,19 @@ const startRecognition = async () => {
 <style scoped>
 /* 在这里添加任何需要的样式 */
 
-.whole-container{
+.whole-container {
     display: flex;
     flex-direction: column;
 }
-.return-container{
+
+.return-container {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
 }
 
-.image-container{
+.image-container {
     width: 100%;
 }
-
 </style>
