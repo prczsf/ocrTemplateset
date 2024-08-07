@@ -10,7 +10,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/">首页</RouterLink>
         <RouterLink to="/rectareamanage">识别模板管理</RouterLink>
         <RouterLink to="/tablerecgonize">基于模板识别表格</RouterLink>
-        <!-- <RouterLink to="/tablercalibration">手工调整表格</RouterLink> -->
+        <RouterLink to="/tablercalibration">审核并手工调整识别结果</RouterLink>
         <RouterLink to="/reportgeneration">报告生成</RouterLink>
       </nav>
     </div>

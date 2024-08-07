@@ -2,17 +2,19 @@
     <div class="whole-container">
         <h1>OCR 演示</h1>
         <div class="file-setting">
+            <span>导入区域识别模板：</span>
             <input type="file" @change="handleFileUpload" accept=".json">
+            <span>后台已经存储的待识别图片选择：</span>
             <input type="text" v-model="imageName" placeholder="输入已经保存在后台的图片名称（不含扩展名）">
             <select v-model="imageName">
                 <option value="moban">moban.png</option>
                 <option value="andan">andan.png</option>
-                <option value="fenguanghuifafen1">fenguanghuifafen1.png</option>
-                <option value="fenguanghuifafen2">fenguanghuifafen2.png</option>
-                <option value="fenguanghuifafen3">fenguanghuifafen3.png</option>
-                <option value="fenguanghuifafen4">fenguanghuifafen4.png</option>
+                <option value="fenguang1">fenguanghuifafen1.png</option>
+                <option value="fenguang2">fenguanghuifafen2.png</option>
+                <option value="fenguang3">fenguanghuifafen3.png</option>
+                <option value="fenguang4">fenguanghuifafen4.png</option>
                 <option value="fenguangliuhuawu">fenguangliuhuawu.png</option>
-                <option value="fenuangqinghua">fenuangqinghua.png</option>
+                <option value="fenguangqinghua">fenuangqinghua.png</option>
                 <option value="huaxuexuyang828">huaxuexuyang828.png</option>
                 <option value="huaxuexuyang3991">huaxuexuyang3991.png</option>
                 <option value="huaxuexuyang3992">huaxuexuyang3992.png</option>
