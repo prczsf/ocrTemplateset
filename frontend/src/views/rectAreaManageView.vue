@@ -3,18 +3,18 @@
     <div style="width: 100%; height: 30px;">
       <select v-model="imagePath">
         <option value="moban1.png">moban1.png</option>
-        <option value="andan.png">andan.png</option>       
+        <option value="andan.png">andan.png</option>
         <option value="fenguanghuifafen1.png">fenguanghuifafen1.png</option>
         <option value="fenguanghuifafen2.png">fenguanghuifafen2.png</option>
         <option value="fenguanghuifafen3.png">fenguanghuifafen3.png</option>
-        <option value="fenguanghuifafen4.png">fenguanghuifafen4.png</option>   
-        <option value="fenguangliuhuawu.png">fenguangliuhuawu.png</option>           
-        <option value="fenuangqinghua.png">fenuangqinghua.png</option>             
-        <option value="huaxuexuyang828.png">huaxuexuyang828.png</option>    
+        <option value="fenguanghuifafen4.png">fenguanghuifafen4.png</option>
+        <option value="fenguangliuhuawu.png">fenguangliuhuawu.png</option>
+        <option value="fenuangqinghua.png">fenuangqinghua.png</option>
+        <option value="huaxuexuyang828.png">huaxuexuyang828.png</option>
         <option value="huaxuexuyang3991.png">huaxuexuyang3991.png</option>
         <option value="huaxuexuyang3992.png">huaxuexuyang3992.png</option>
         <option value="wurishenghua.png">wurishenghua.png</option>
-        <option value="xuanfuwu.png">xuanfuwu.png</option>            
+        <option value="xuanfuwu.png">xuanfuwu.png</option>
         <option value="moban2.png">moban2.png</option>
         <option value="moban3.png">moban3.png</option>
         <option value="moban4.png">moban4.png</option>
@@ -31,9 +31,8 @@
           <button @click="addRect">添加识别区域</button>
           <button @click="saveRects">保存到后台</button>
           <button @click="exportConfig">导出配置</button>
-          <!-- <button @click="importConfig">导入配置</button> -->
-
-          
+          <button @click="triggerFileInput">导入配置</button>
+          <input type="file" id="fileInput" @change="importConfig" style="display: none;" />
         </div>
 
         <table>
@@ -166,30 +165,45 @@ const exportConfig = () => {
   URL.revokeObjectURL(url);
 };
 
+const triggerFileInput = () => {
+  document.getElementById('fileInput').click();
+};
 const importConfig = (event) => {
   const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const json = JSON.parse(e.target.result);
-      rects.value = json;
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    try {
+      const configData = JSON.parse(e.target.result);
       canvas.clear();
-      json.forEach((rectData) => {
+      setBackgroundImage(); // Clear the canvas and set the background image again
+      rects.value = []; // Clear the existing rectangles data
+
+      configData.forEach((rectData) => {
+        const rectArea = rectData.rectArea;
+        const rectAreaCleaned = rectArea.replace(/[()]/g, ''); // Remove parentheses
+        const [left, top, width, height] = rectAreaCleaned.split(',').map(Number);
+
         const rect = new fabric.Rect({
-          left: rectData.rectArea[0],
-          top: rectData.rectArea[1],
-          width: rectData.rectArea[2],
-          height: rectData.rectArea[3],
+          left: left,
+          top: top,
+          width: width,
+          height: height,
           fill: 'rgba(255, 0, 0, 0.5)',
           hasControls: true,
           hasBorders: true,
           selectable: true
         });
         rect.seq = rectData.seq;
-        canvas.add(rect);
+        rect.type = rectData.type;
+        rect.language = rectData.language;
+        rect.correctRule = rectData.correctRule;
 
+        // Add event listeners to the new rectangle
         rect.on('selected', () => {
-          selectedRectSeq.value = rect.seq;
+          selectedRectSeq.value = rectData.seq;
         });
 
         rect.on('deselected', () => {
@@ -197,18 +211,34 @@ const importConfig = (event) => {
         });
 
         const updateRectArea = () => {
-          const index = rects.value.findIndex(r => r.seq === rect.seq);
-          rects.value[index].rectArea = `(${rect.left}, ${rect.top}, ${rect.width}, ${rect.height})`;
+          const index = rects.value.findIndex(r => r.seq === rectData.seq);
+          const width = rect.width * rect.scaleX;
+          const height = rect.height * rect.scaleY;
+          rects.value[index].rectArea = `(${rect.left}, ${rect.top}, ${width}, ${height})`;
         };
 
         rect.on('modified', updateRectArea);
         rect.on('scaling', updateRectArea);
         rect.on('scaled', updateRectArea);
+
+        canvas.add(rect);
+        rects.value.push({
+          seq: rectData.seq,
+          rectVarName: rectData.rectVarName,
+          rectArea: `(${rect.left}, ${rect.top}, ${rect.width}, ${rect.height})`,
+          type: rectData.type,
+          language: rectData.language,
+          correctRule: rectData.correctRule
+        });
       });
-      canvas.renderAll();
-    };
-    reader.readAsText(file);
-  }
+
+      canvas.renderAll(); // Refresh the canvas
+    } catch (error) {
+      console.error('Error parsing JSON:', error);
+    }
+  };
+
+  reader.readAsText(file);
 };
 
 const setBackgroundImage = () => {
@@ -220,6 +250,7 @@ const setBackgroundImage = () => {
       scaleY: canvas.height / img.height
     });
   });
+  console.log("setBackgroundImage……")
 };
 
 onMounted(() => {
