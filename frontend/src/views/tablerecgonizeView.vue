@@ -103,6 +103,7 @@ const startRecognition = async () => {
     const formData = new FormData();
     formData.append('json', JSON.stringify(jsonFile.value));
     formData.append('image_name', imageName.value);
+    imageSrc.value = `api/filesPic/${imageName.value}/page_1.png`;
 
     try {
         const response = await axios.post('api/paddleoffline', formData, {
@@ -116,7 +117,6 @@ const startRecognition = async () => {
         otherResults.value = response.data.filter(item => item.type !== 'body');
 
         // 获取并显示图片
-        imageSrc.value = `api/filesPic/${imageName.value}/page_1.png`;
     } catch (error) {
         console.error(error);
         alert('处理请求时发生错误。');

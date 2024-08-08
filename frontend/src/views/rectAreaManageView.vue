@@ -31,6 +31,9 @@
           <button @click="addRect">添加识别区域</button>
           <button @click="saveRects">保存到后台</button>
           <button @click="exportConfig">导出配置</button>
+          <!-- <button @click="importConfig">导入配置</button> -->
+
+          
         </div>
 
         <table>
@@ -109,9 +112,9 @@ const addRect = () => {
     seq,
     rectVarName: '',
     rectArea: `(${rect.left}, ${rect.top}, ${rect.width}, ${rect.height})`,
-    type: '',
-    language: '',
-    correctRule: ''
+    type: 'header',
+    language: 'zh',
+    correctRule: 'rule2'
   });
 
   rect.on('selected', () => {
