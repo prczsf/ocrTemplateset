@@ -6,15 +6,21 @@
             <input type="file" @change="handleFileUpload" accept=".json">
             <span>后台已经存储的待识别图片选择：</span>
             <input type="text" v-model="imageName" placeholder="输入已经保存在后台的图片名称（不含扩展名）">
-            <select v-model="imageName">
+            <select v-model="imageName" @change="setImage">
+                <option value="calibration1">calibration1.png</option>
+                <option value="calibration2">calibration2.png</option>
+                <option value="calibration3">calibration3.png</option>
+                <option value="calibration4">calibration4.png</option>
+                <option value="calibration5">calibration5.png</option>
+                <option value="calibration6">calibration6.png</option>
                 <option value="moban">moban.png</option>
                 <option value="andan">andan.png</option>
-                <option value="fenguang1">fenguanghuifafen1.png</option>
-                <option value="fenguang2">fenguanghuifafen2.png</option>
-                <option value="fenguang3">fenguanghuifafen3.png</option>
-                <option value="fenguang4">fenguanghuifafen4.png</option>
+                <option value="fenguanghuifafen1">fenguanghuifafen1.png</option>
+                <option value="fenguanghuifafen2">fenguanghuifafen2.png</option>
+                <option value="fenguanghuifafen3">fenguanghuifafen3.png</option>
+                <option value="fenguanghuifafen4">fenguanghuifafen4.png</option>
                 <option value="fenguangliuhuawu">fenguangliuhuawu.png</option>
-                <option value="fenguangqinghua">fenuangqinghua.png</option>
+                <option value="fenuangqinghua">fenuangqinghua.png</option>
                 <option value="huaxuexuyang828">huaxuexuyang828.png</option>
                 <option value="huaxuexuyang3991">huaxuexuyang3991.png</option>
                 <option value="huaxuexuyang3992">huaxuexuyang3992.png</option>
@@ -26,20 +32,19 @@
         </div>
 
         <div class="return-container">
-            <div v-if="imageSrc" class="image-container">
+
+            <div class="image-container">
                 <h2>图片预览</h2>
-                <img :src="imageSrc" alt="图片预览" style="max-width: 100%;">
+                <img :src="imageSrc" v-if="imageSrc"  alt="图片预览" width="1080px">
             </div>
             <div class="result-container">
-                <div v-if="bodyResults.length">
-                    <h2>表格数据</h2>
-                    <div v-for="item in bodyResults" :key="item.seq">
-                        <div v-html="item.rectVarValue" border="1px"></div>
-                    </div>
+
+                <div>
+                <el-button type="primary">保存提交</el-button>
                 </div>
-                <div v-if="otherResults.length">
-                    <h2>其他数据</h2>
-                    <table border="1px">
+                <div v-if="otherResults.length" class="tableArea">
+                    <h2>批次数据</h2>
+                    <table>
                         <thead>
                             <tr>
                                 <th>序号</th>
@@ -49,27 +54,36 @@
                                 <th>设置检测语言</th>
                                 <th>校正规则</th>
                                 <th>矩形变量值</th>
+                                <th>操作</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in otherResults" :key="item.seq">
+                            <tr v-for="(item, index) in otherResults" :key="item.seq">
                                 <td>{{ item.seq }}</td>
-                                <td>{{ item.rectVarName }}</td>
-                                <td>{{ item.rectArea }}</td>
-                                <td>{{ item.type }}</td>
-                                <td>{{ item.language }}</td>
-                                <td>{{ item.correctRule }}</td>
-                                <td>{{ item.rectVarValue }}</td>
+                                <td><input v-model="item.rectVarName"></td>
+                                <td><input v-model="item.rectArea"></td>
+                                <td><input v-model="item.type"></td>
+                                <td><input v-model="item.language"></td>
+                                <td><input v-model="item.correctRule"></td>
+                                <td><input v-model="item.rectVarValue"></td>
+                                <td><button @click="removeOtherResult(index)">删除</button></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
+                <div v-if="bodyResults.length"  class="tableArea">
+                    <h2>样品测试数据</h2>
+                    <div v-for="item in bodyResults" :key="item.seq">
+                        <div v-html="item.rectVarValue" border="1px"></div>
+                    </div>
+                    <!-- <div v-for="(item, index) in bodyResults" :key="item.seq">
+                        <div contenteditable="true" @input="updateBodyResult(index, $event)">{{ item.rectVarValue }}</div>
+                        <button @click="removeBodyResult(index)">删除</button>
+                    </div> -->
+                </div>
             </div>
 
         </div>
-
-
     </div>
 </template>
 
@@ -83,6 +97,10 @@ const bodyResults = ref([]);
 const otherResults = ref([]);
 const imageSrc = ref('');
 
+
+const setImage=()=>{
+    imageSrc.value = `api/filesPic/${imageName.value}/page_1.png`;
+}
 const handleFileUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -93,8 +111,8 @@ const handleFileUpload = (event) => {
 };
 
 const startRecognition = async () => {
-    bodyResults.value = "";
-    otherResults.vale = "";
+    bodyResults.value = [];
+    otherResults.value = [];
     if (!jsonFile.value || !imageName.value) {
         alert('请上传 JSON 文件并输入图片名称。');
         return;
@@ -121,13 +139,22 @@ const startRecognition = async () => {
         console.error(error);
         alert('处理请求时发生错误。');
     }
-}
+};
+
+const removeOtherResult = (index) => {
+    otherResults.value.splice(index, 1);
+};
+
+const removeBodyResult = (index) => {
+    bodyResults.value.splice(index, 1);
+};
+
+const updateBodyResult = (index, event) => {
+    bodyResults.value[index].rectVarValue = event.target.innerText;
+};
 </script>
 
-
 <style scoped>
-/* 在这里添加任何需要的样式 */
-
 .whole-container {
     display: flex;
     flex-direction: column;
@@ -136,11 +163,16 @@ const startRecognition = async () => {
 .return-container {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: left;
     flex-direction: row;
 }
 
 .image-container {
     width: 100%;
 }
+
+.tableArea{
+    width: 100%;
+}
+
 </style>

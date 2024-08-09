@@ -2,6 +2,12 @@
   <div>
     <div style="width: 100%; height: 30px;">
       <select v-model="imagePath">
+        <option value="calibration1.png">calibration1.png</option>
+        <option value="calibration2.png">calibration2.png</option>
+        <option value="calibration3.png">calibration3.png</option>
+        <option value="calibration4.png">calibration4.png</option>
+        <option value="calibration5.png">calibration5.png</option>
+        <option value="calibration6.png">calibration6.png</option>                
         <option value="moban1.png">moban1.png</option>
         <option value="andan.png">andan.png</option>
         <option value="fenguanghuifafen1.png">fenguanghuifafen1.png</option>
@@ -24,7 +30,7 @@
     </div>
     <div class="rect-area-manage-view">
       <div id="canvas-container">
-        <canvas id="canvas" width="1080" height="1528"></canvas>
+        <canvas id="canvas" width="1080" height="1800"></canvas>
       </div>
       <div>
         <div class="operationButton">
@@ -247,7 +253,9 @@ const setBackgroundImage = () => {
   fabric.Image.fromURL(imagePath.value, (img) => {
     canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
       scaleX: canvas.width / img.width,
-      scaleY: canvas.height / img.height
+      // scaleY: canvas.height / img.height
+      scaleY: canvas.width / img.width
+
     });
   });
   console.log("setBackgroundImage……")
@@ -271,9 +279,6 @@ onMounted(() => {
 
 #canvas-container {
   width: 1080px;
-  height: 1528px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
 }
 
 table {

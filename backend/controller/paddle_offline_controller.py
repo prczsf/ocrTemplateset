@@ -35,7 +35,8 @@ class PaddleOfflineOcrView(Resource):
 
         for item in data:
             rect_area = eval(item['rectArea'])
-            x, y, w, h = [int(coord) for coord in rect_area]
+            x, y, w, h = [round(float(coord)) for coord in rect_area]
+            print(x, y, w, h)
             roi = image[y:y+h, x:x+w]
             cv2.imwrite('temp.png', roi)
 
