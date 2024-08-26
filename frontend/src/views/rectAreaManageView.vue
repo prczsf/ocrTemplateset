@@ -2,14 +2,18 @@
   <div>
     <div style="width: 100%; height: 30px;">
       <select v-model="imagePath">
-        <option value="calibration1.png">calibration1.png</option>
+        <!-- <option value="calibration1.png">calibration1.png</option>
         <option value="calibration2.png">calibration2.png</option>
         <option value="calibration3.png">calibration3.png</option>
         <option value="calibration4.png">calibration4.png</option>
         <option value="calibration5.png">calibration5.png</option>
-        <option value="calibration6.png">calibration6.png</option>                
-        <option value="moban1.png">moban1.png</option>
+        <option value="calibration6.png">calibration6.png</option>  -->              
+        <option value="moban1.png">moban1.png</option> 
         <option value="andan.png">andan.png</option>
+        <option value="selfHand0809.png">selfHand0809.png</option> 
+        <option value="selfHandFang01.png">selfHandFang01.png</option> 
+        <option value="selfHandFang02.png">selfHandFang02.png</option> 
+        <option value="selfHandFang03.png">selfHandFang03.png</option>         
         <option value="fenguanghuifafen1.png">fenguanghuifafen1.png</option>
         <option value="fenguanghuifafen2.png">fenguanghuifafen2.png</option>
         <option value="fenguanghuifafen3.png">fenguanghuifafen3.png</option>
@@ -20,11 +24,16 @@
         <option value="huaxuexuyang3991.png">huaxuexuyang3991.png</option>
         <option value="huaxuexuyang3992.png">huaxuexuyang3992.png</option>
         <option value="wurishenghua.png">wurishenghua.png</option>
-        <option value="xuanfuwu.png">xuanfuwu.png</option>
-        <option value="moban2.png">moban2.png</option>
+        <option value="xuanfuwu.png">xuanfuwu.png</option>        
+        <!-- <option value="moban2.png">moban2.png</option>
         <option value="moban3.png">moban3.png</option>
         <option value="moban4.png">moban4.png</option>
-        <option value="moban5.png">moban5.png</option>
+        <option value="moban5.png">moban5.png</option> -->
+        <option value="andan0809.png">andan0809.png</option>
+        <option value="codcr0809.png">codcr0809.png</option>
+        <option value="fenguangguangdu0809.png">fenguangguangdu0809.png</option>
+        <option value="xuanfuwu0809.png">xuanfuwu0809.png</option>
+        <option value="youceding0809.png">youceding0809.png</option>        
       </select>
       <button @click="setBackgroundImage">选择模板图片开始设置</button>
     </div>

@@ -1,20 +1,25 @@
 <template>
     <div class="whole-container">
         <h1>OCR 演示</h1>
+        <p>工单号码：{{ $route.params.wordorder}}</p>
         <div class="file-setting">
             <span>导入区域识别模板：</span>
             <input type="file" @change="handleFileUpload" accept=".json">
             <span>后台已经存储的待识别图片选择：</span>
             <input type="text" v-model="imageName" placeholder="输入已经保存在后台的图片名称（不含扩展名）">
             <select v-model="imageName" @change="setImage">
-                <option value="calibration1">calibration1.png</option>
+                <!-- <option value="calibration1">calibration1.png</option>
                 <option value="calibration2">calibration2.png</option>
                 <option value="calibration3">calibration3.png</option>
                 <option value="calibration4">calibration4.png</option>
                 <option value="calibration5">calibration5.png</option>
-                <option value="calibration6">calibration6.png</option>
-                <option value="moban">moban.png</option>
+                <option value="calibration6">calibration6.png</option>-->
+                <option value="moban">moban.png</option> 
                 <option value="andan">andan.png</option>
+                <option value="selfHand0809">selfHand0809.png</option> 
+                <option value="selfHandFang01">selfHandFang01.png</option> 
+                <option value="selfHandFang02">selfHandFang02.png</option> 
+                <option value="selfHandFang03">selfHandFang03.png</option> 
                 <option value="fenguanghuifafen1">fenguanghuifafen1.png</option>
                 <option value="fenguanghuifafen2">fenguanghuifafen2.png</option>
                 <option value="fenguanghuifafen3">fenguanghuifafen3.png</option>
@@ -26,6 +31,11 @@
                 <option value="huaxuexuyang3992">huaxuexuyang3992.png</option>
                 <option value="wurishenghua">wurishenghua.png</option>
                 <option value="xuanfuwu">xuanfuwu.png</option>
+                <option value="andan0809">andan0809.png</option>
+                <option value="codcr0809">codcr0809.png</option>
+                <option value="fenguangguangdu0809">fenguangguangdu0809.png</option>
+                <option value="xuanfuwu0809">xuanfuwu0809.png</option>
+                <option value="youceding0809">youceding0809.png</option>    
             </select>
 
             <button @click="startRecognition">开始识别</button>
@@ -39,9 +49,7 @@
             </div>
             <div class="result-container">
 
-                <div>
-                <el-button type="primary">保存提交</el-button>
-                </div>
+
                 <div v-if="otherResults.length" class="tableArea">
                     <h2>批次数据</h2>
                     <table>
@@ -74,12 +82,15 @@
                 <div v-if="bodyResults.length"  class="tableArea">
                     <h2>样品测试数据</h2>
                     <div v-for="item in bodyResults" :key="item.seq">
-                        <div v-html="item.rectVarValue" border="1px"></div>
+                        <div v-html="item.rectVarValue" style="border: 1px solid black;" id="bodyResult"></div>
                     </div>
                     <!-- <div v-for="(item, index) in bodyResults" :key="item.seq">
                         <div contenteditable="true" @input="updateBodyResult(index, $event)">{{ item.rectVarValue }}</div>
                         <button @click="removeBodyResult(index)">删除</button>
                     </div> -->
+                </div>
+                <div>
+                <el-button type="primary">保存提交</el-button>
                 </div>
             </div>
 
@@ -99,6 +110,7 @@ const imageSrc = ref('');
 
 
 const setImage=()=>{
+    console.log(imageName.value);
     imageSrc.value = `api/filesPic/${imageName.value}/page_1.png`;
 }
 const handleFileUpload = (event) => {
@@ -167,12 +179,24 @@ const updateBodyResult = (index, event) => {
     flex-direction: row;
 }
 
+.result-container{
+    width: 100%;
+    align-items: left;
+}
+
 .image-container {
     width: 100%;
 }
-
+table, th, td
+{
+    border: 1px solid black;
+}
 .tableArea{
     width: 100%;
+    align-items: left;
 }
 
+#bodyResult td {
+    border: 1px solid black;
+}
 </style>

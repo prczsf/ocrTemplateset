@@ -15,6 +15,11 @@ const router = createRouter({
       component: () => import('../views/rectAreaManageView.vue')
     },
     {
+      path: '/tablerecgonize/:wordorder',
+      name: 'tablerecgonize1',
+      component: () => import('../views/tablerecgonizeView.vue')
+    },
+    {
       path: '/tablerecgonize',
       name: 'tablerecgonize',
       component: () => import('../views/tablerecgonizeView.vue')
@@ -25,9 +30,19 @@ const router = createRouter({
       component: () => import('../views/tablercalibrationView.vue')
     },
     {
+      path: '/tablercaliexample',
+      name: 'tablercaliexample',
+      component: () => import('../views/tablercaliExampleView.vue')
+    },
+    {
       path: '/reportgeneration',
       name: 'reportgeneration',
       component: () => import('../views/reportgenerationView.vue')
+    },
+    {
+      path: '/limspagedemo',
+      name: 'limspagedemo',
+      component: () => import('../views/limspagedemoView.vue')
     }
   ]
 })
