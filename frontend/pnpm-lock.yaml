@@ -31,7 +31,7 @@ dependencies:
     version: 0.13.0
   ocrtemplateset:
     specifier: 'file:'
-    version: 'file:'
+    version: file:(@types/sortablejs@1.15.8)
   vue:
     specifier: ^3.4.29
     version: 3.4.34
@@ -546,6 +546,10 @@ packages:
 
   /@types/lodash@4.17.7:
     resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
+    dev: false
+
+  /@types/sortablejs@1.15.8:
+    resolution: {integrity: sha512-b79830lW+RZfwaztgs1aVPgbasJ8e7AXtZYHTELNXZPsERt4ymJdjV4OccDbHQAvHrCcFpbF78jkm0R6h/pZVg==}
     dev: false
 
   /@types/web-bluetooth@0.0.16:
@@ -1919,6 +1923,18 @@ packages:
       vue: 3.4.34
     dev: false
 
+  /vue-draggable-plus@0.5.3(@types/sortablejs@1.15.8):
+    resolution: {integrity: sha512-dwKDzZ8io3y7k2iuIwVwiGrdiq5C0S7Et7nt5Gz5KjpBS9MtZGFP+L4FJPWGSLYleOT8HmVuCXTZYjGet7wC0g==}
+    peerDependencies:
+      '@types/sortablejs': ^1.15.0
+      '@vue/composition-api': '*'
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@types/sortablejs': 1.15.8
+    dev: false
+
   /vue-router@4.4.0(vue@3.4.34):
     resolution: {integrity: sha512-HB+t2p611aIZraV2aPSRNXf0Z/oLZFrlygJm+sZbdJaW6lcFqEDQwnzUBXn+DApw+/QzDU/I9TeWx9izEjTmsA==}
     peerDependencies:
@@ -2077,10 +2093,12 @@ packages:
     requiresBuild: true
     dev: false
 
-  'file:':
+  file:(@types/sortablejs@1.15.8):
     resolution: {directory: '', type: directory}
+    id: 'file:'
     name: ocrtemplateset
     dependencies:
+      '@mayasabha/ckeditor4-vue3': 1.0.8(vue@3.4.34)
       ant-design-vue: 4.2.3(vue@3.4.34)
       axios: 1.7.2
       canvas: 2.11.2
@@ -2089,8 +2107,10 @@ packages:
       fabric-with-erasing: 1.0.1
       install: 0.13.0
       vue: 3.4.34
+      vue-draggable-plus: 0.5.3(@types/sortablejs@1.15.8)
       vue-router: 4.4.0(vue@3.4.34)
     transitivePeerDependencies:
+      - '@types/sortablejs'
       - '@vue/composition-api'
       - bufferutil
       - debug

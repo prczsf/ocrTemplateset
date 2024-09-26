@@ -43,6 +43,11 @@ const router = createRouter({
       path: '/limspagedemo',
       name: 'limspagedemo',
       component: () => import('../views/limspagedemoView.vue')
+    },
+    {
+      path: '/ruledefine',
+      name: 'ruledefine',
+      component: () => import('../views/ruledefine.vue')
     }
   ]
 })

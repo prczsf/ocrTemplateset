@@ -14,6 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/tablercalibration">审核并手工调整识别结果</RouterLink>
         <RouterLink to="/tablercaliexample">审核并手工调整识别（示例）</RouterLink>
         <RouterLink to="/reportgeneration">报告生成</RouterLink>
+        <RouterLink to="/ruledefine">规则定义</RouterLink>
       </nav>
     </div>
   </header>
